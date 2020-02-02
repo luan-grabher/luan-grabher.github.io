@@ -3,8 +3,8 @@ window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_
 
 var Links = {
     empregosAdm : "https://www.infojobs.com.br/empregos.aspx?Palabra=auxiliar%20administrativo"
-    ,empregosAdmRS: "https://www.infojobs.com.br/vagas-de-emprego-recepcionista-em-rio-grande-do-sul.aspx?Categoria=51&TipoContrato=2&Page=1"
-    ,empregosAdmCidades: "https://www.infojobs.com.br/vagas-de-emprego-recepcionista-em-porto-alegre,-rs.aspx?Categoria=51&Poblacion=5209591,5209085,5208982,5209127,5209343&TipoContrato=2&Page=1"
+    ,empregosAdmRS: "https://www.infojobs.com.br/vagas-de-emprego-auxiliar+administrativo-em-rio-grande-do-sul.aspx?Categoria=51&TipoContrato=2&Page=1"
+    ,empregosAdmCidades: "https://www.infojobs.com.br/vagas-de-emprego-auxiliar+administrativo-em-porto-alegre,-rs.aspx?Categoria=51&Poblacion=5209591,5209085,5208982,5209127,5209343&TipoContrato=2&Page=1"
 }
 
 var Log = {
