@@ -8,7 +8,7 @@ alert("O robô está ligado!");
 //Se estiver setado a cobranca atual
 if(localStorage.getItem('executando') === "SIM"){
 	//copia a variavel de cobranca do local storge
-	cobranca = JSON.parse(localStorage.getItem('cobranca'))
+	cobranca = JSON.parse(localStorage.getItem('cobranca'));
 	
 	/*Se tiver na pesquisa de afiliados*/
 	if(document.URL.includes('ListaFiliado')){
@@ -25,7 +25,7 @@ else if(document.URL.includes('ListaFiliado') && confirm('Deseja ver a lista de 
 	/* Pergunta quantos a pessoa quer fazer */
 	var qtdLista = parseInt(prompt("Você quer verificar quantas pessoas?","1000"));
 	
-	if(isNaN(qtdLista){
+	if(isNaN(qtdLista)){
 		alert("Número inválido, irei verificar 100");
 		qtdLista = 100;
 	}
