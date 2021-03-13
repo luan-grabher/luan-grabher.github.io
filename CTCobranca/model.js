@@ -1,21 +1,35 @@
+var mesMaximo = 1;
+var anoAtual=2021;
+var inicioMatricula = 329000000;
+
 var Model = {
 	start: function(){
-		this.resetLocalStorage();
+		/*Diz que está executando*/
+		localStorage.setItem('executando','SIM');
+	
+		/*Define a variavel cobranca com valores padrões*/
+		this.definirValorPadraoCobranca();
+		/*Define o localStorage com o novo valor padrão */
 		localStorage.setItem('cobranca',JSON.stringify(cobranca));
 		
+		/*Recarrega a Página*/
 		location.reload();
 	},
 	acessarMatriculaAtual: function(){
 		//Se a matricula atual for maior que o maximo, para execucao
 		if(cobranca.atual > cobranca.maximo){
+			/*Imprime a lista atual*/
 			$("#ContentPlaceHolder1_upInfoFiliados").html(
 				cobranca
 				.lista
 				.toString()
 				.replaceAll(",","<br>")
 			);
+			/*Guarda a lista*/
 			localStorage.setItem('ultimaLista',JSON.stringify(cobranca.lista));
-			localStorage.removeItem('cobranca');
+			
+			/*Termina execucao*/
+			localStorage.removeItem('executando');
 		}else{
 			var cssInput = "input#ContentPlaceHolder1_txbMatricula";
 			$(cssInput).val("RS" + cobranca.atual);
@@ -61,7 +75,7 @@ var Model = {
 				//ano < 2020
 				//ano = 2020 e mes < mes maximo				
 				/*ano < cobranca.anoAtual || (ano == cobranca.anoAtual && )*/
-				if(mes < cobranca.mesMaximo){
+				if(mes < mesMaximo){
 					//Adiciona na lista
 					cobranca.lista.push("RS" + cobranca.atual);
 				}				
@@ -80,13 +94,21 @@ var Model = {
 		localStorage.setItem('ultimaLista',JSON.stringify(cobranca.lista));
 		window.location.href = "https://ctn.sistematodos.com.br/paginas/filiado/ListaFiliado.aspx";
 	},
-	resetLocalStorage: function(){
+	definirValorPadraoCobranca: function(){
+		
+		
+		var iniciarEm = inicioMatricula;
+		
+		/*Se existir cobranca*/
+		if(localStorage.getItem('cobranca') !== null){
+			/*Pega valor que tava*/
+			iniciarEm = (JSON.parse(localStorage.getItem('cobranca'))).maximo + 1
+		}
+	
+		/*inicia variavel*/
 		cobranca = {
-			atual:  329009501,
-			maximo: 329010000,
-			matriculaPadrao: 329000000,
-			mesMaximo: 10,
-			anoAtual: 2020,
+			atual:  iniciarEm,
+			maximo: iniciarEm + qtdLista - 1,
 			lista: []
 		}
 	}
