@@ -31,4 +31,6 @@ else if(document.URL.includes('ListaFiliado') && confirm('Deseja ver a lista de 
 	
 	/*Inicia a cobranca*/
 	Model.start();
+}else {
+	alert("O robô está ligado!");
 }
