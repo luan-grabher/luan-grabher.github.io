@@ -57,7 +57,8 @@ var Model = {
 		
 		//Se tiver algum rejeitado na tabela
 		if(
-			(primeiraBolinha.includes('aberta') /*não pode ser amarela*/
+			typeof(primeiraBolinha) !== "undefined" &&
+			(primeiraBolinha.includes('aberta') /*tem que ser vermelha ou laranja*/
 			|| primeiraBolinha.includes('rejeitada'))
 			&& formaPagamento !== "CAIXA ECONOMICA FEDERAL" /*nao pode caixa federal*/
 		){		
