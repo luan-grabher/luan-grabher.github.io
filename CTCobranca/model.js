@@ -52,11 +52,15 @@ var Model = {
 		}
 	},
 	verificarAtraso: function(){
-		var cssTable = "table#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0";
+		var primeiraBolinha = $("#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0_ibStatusLancamento_0").attr("src");
 		var formaPagamento = $("#ContentPlaceHolder1_gvContFiliados_lbFormaReceb_0").html();
 		
 		//Se tiver algum rejeitado na tabela
-		if(!$(cssTable).html().includes('enviada') && $(cssTable).html().includes('rejeitada') && formaPagamento !== "CAIXA ECONOMICA FEDERAL"){									
+		if(
+			(primeiraBolinha.includes('aberta') /*não pode ser amarela*/
+			|| primeiraBolinha.includes('rejeitada'))
+			&& formaPagamento !== "CAIXA ECONOMICA FEDERAL" /*nao pode caixa federal*/
+		){									
 			//procura datas
 			var matches = [...obs.matchAll("[0-9]+[/][0-9]+")];
 			
@@ -79,7 +83,7 @@ var Model = {
 				//Adiciona na lista
 				cobranca.lista.push("RS" + cobranca.atual);
 				//DEfine observação como da Bruna
-				definirObservacao();
+				//definirObservacao();
 				
 				//Espera 1s para grvavar
 				setTimeout(function(){},1000);
