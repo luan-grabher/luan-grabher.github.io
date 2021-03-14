@@ -52,14 +52,16 @@ var Model = {
 		}
 	},
 	verificarAtraso: function(){
-		var primeiraBolinha = $("#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0_ibStatusLancamento_0").attr("src");
+		var bolinha1 = $("#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0_ibStatusLancamento_0").attr("src");
+		var bolinha2 = $("#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0_ibStatusLancamento_1").attr("src");
+		var bolinha3 = $("#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0_ibStatusLancamento_2").attr("src");
 		var formaPagamento = $("#ContentPlaceHolder1_gvContFiliados_lbFormaReceb_0").html();
 		
 		//Se tiver algum rejeitado na tabela
 		if(
-			typeof(primeiraBolinha) !== "undefined" &&
-			(primeiraBolinha.includes('aberta') /*tem que ser vermelha ou laranja*/
-			|| primeiraBolinha.includes('rejeitada'))
+			typeof(bolinha1) !== "undefined" &&
+			(bolinha1.includes('aberta') /*tem que ser vermelha ou laranja*/
+			|| bolinha1.includes('rejeitada'))
 			&& formaPagamento !== "CAIXA ECONOMICA FEDERAL" /*nao pode caixa federal*/
 		){		
 			var cssObservacao = "textarea#ContentPlaceHolder1_txbObservacao";
@@ -88,13 +90,24 @@ var Model = {
 				var nome = $("#ContentPlaceHolder1_txbNomeFiliado").val();
 				var numero = $("#ContentPlaceHolder1_txbTelFiliado").val();
 				
+				var cobrancaCerta = "";
+				
+				if(
+					//primeira vermelha e a segunda azul
+					(bolinha1.includes("rejeitada") && bolinha2.includes("arrecadada")) ||
+					//primeira laranja, a segunda vermelha e a terceira azul
+					(bolinha1.includes("aberta") && bolinha2.includes("rejeitada") && bolinha3.includes("arrecadada"))
+				   ){
+					cobrancaCerta = "(***) ";
+				}
+					
 				//Adiciona na lista
-				cobranca.lista.push("RS" + cobranca.atual + " - " + nome + " - " + numero);
+				cobranca.lista.push(cobrancaCerta + "RS" + cobranca.atual + " - " + nome + " - " + numero);
 				//DEfine observação como da Bruna
-				//definirObservacao();
+				definirObservacao();
 				
 				//Espera 1s para grvavar
-				//setTimeout(function(){},1000);
+				setTimeout(function(){},1000);
 			}
 		}
 		
@@ -102,7 +115,7 @@ var Model = {
 		Model.irParaProximo();		
 	},
 	definirObservacao: function(){				
-		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " contato Bruna");		
+		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " em contato Bruna");		
 		$(cssObservacao).click();		
 	},
 	irParaProximo: function(){
