@@ -53,9 +53,10 @@ var Model = {
 	},
 	verificarAtraso: function(){
 		var cssTable = "table#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0";
+		var formaPagamento = $("#ContentPlaceHolder1_gvContFiliados_lbFormaReceb_0").html();
 		
 		//Se tiver algum rejeitado na tabela
-		if($(cssTable).html().includes('rejeitada')){									
+		if($(cssTable).html().includes('rejeitada') && formaPagamento !== "CAIXA ECONOMICA FEDERAL"){									
 			//procura datas
 			var matches = [...obs.matchAll("[0-9]+[/][0-9]+")];
 			
