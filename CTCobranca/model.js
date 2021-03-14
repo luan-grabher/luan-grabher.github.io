@@ -1,6 +1,6 @@
 var mesMaximo = 1;
 var anoAtual=2021;
-var inicioMatricula = 329000000;
+var inicioMatricula = 329000100;
 
 var Model = {
 	start: function(){
