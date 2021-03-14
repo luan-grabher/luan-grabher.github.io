@@ -80,8 +80,11 @@ var Model = {
 			}
 			
 			if(addOnList){
+				var nome = $("#ContentPlaceHolder1_txbNomeFiliado").val();
+				var numero = $("#ContentPlaceHolder1_txbTelFiliado").val();
+				
 				//Adiciona na lista
-				cobranca.lista.push("RS" + cobranca.atual);
+				cobranca.lista.push("RS" + cobranca.atual + " - " + nome + " - " + numero);
 				//DEfine observação como da Bruna
 				//definirObservacao();
 				
