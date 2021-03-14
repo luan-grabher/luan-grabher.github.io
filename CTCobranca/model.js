@@ -60,7 +60,11 @@ var Model = {
 			(primeiraBolinha.includes('aberta') /*não pode ser amarela*/
 			|| primeiraBolinha.includes('rejeitada'))
 			&& formaPagamento !== "CAIXA ECONOMICA FEDERAL" /*nao pode caixa federal*/
-		){									
+		){		
+			var cssObservacao = "textarea#ContentPlaceHolder1_txbObservacao";
+			var cssGravar = "#ContentPlaceHolder1_btnSalvar";
+			var obs = $(cssObservacao).html();
+			
 			//procura datas
 			var matches = [...obs.matchAll("[0-9]+[/][0-9]+")];
 			
@@ -96,13 +100,8 @@ var Model = {
 		//Vai pro proximo
 		Model.irParaProximo();		
 	},
-	definirObservacao: function(){
-		var cssObservacao = "textarea#ContentPlaceHolder1_txbObservacao";
-		var cssGravar = "#ContentPlaceHolder1_btnSalvar";
-		var obs = $(cssObservacao).html();
-		
-		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " contato Bruna");
-		
+	definirObservacao: function(){				
+		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " contato Bruna");		
 		$(cssObservacao).click();		
 	},
 	irParaProximo: function(){
