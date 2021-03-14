@@ -95,20 +95,19 @@ var Model = {
 		window.location.href = "https://ctn.sistematodos.com.br/paginas/filiado/ListaFiliado.aspx";
 	},
 	definirValorPadraoCobranca: function(){
-		
-		
+				
 		var iniciarEm = inicioMatricula;
 		
 		/*Se existir cobranca*/
 		if(localStorage.getItem('cobranca') !== null){
 			/*Pega valor que tava*/
-			iniciarEm = (JSON.parse(localStorage.getItem('cobranca'))).maximo
+			iniciarEm = (JSON.parse(localStorage.getItem('cobranca'))).maximo;
 		}
 	
 		/*inicia variavel*/
 		cobranca = {
 			atual:  iniciarEm,
-			maximo: iniciarEm + qtdLista
+			maximo: iniciarEm + qtdLista,
 			lista: []
 		}
 	}
