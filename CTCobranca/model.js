@@ -2,7 +2,7 @@ var dataAtual = new Date();
 var diaAtual = dataAtual.getDate();
 var mesAtual = dataAtual.getMonth() + 1;
 var anoAtual= dataAtual.getFullYear();
-var inicioMatricula = 329000100;
+var inicioMatricula = 329001000;
 
 var Model = {
 	start: function(){
@@ -104,7 +104,7 @@ var Model = {
 				//Adiciona na lista
 				cobranca.lista.push(cobrancaCerta + "RS" + cobranca.atual + " - " + nome + " - " + numero);
 				//DEfine observação como da Bruna
-				definirObservacao();
+				Model.definirObservacao();
 				
 				//Espera 1s para grvavar
 				setTimeout(function(){},1000);
