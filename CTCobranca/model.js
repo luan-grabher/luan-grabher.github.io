@@ -102,13 +102,13 @@ var Model = {
 		/*Se existir cobranca*/
 		if(localStorage.getItem('cobranca') !== null){
 			/*Pega valor que tava*/
-			iniciarEm = (JSON.parse(localStorage.getItem('cobranca'))).maximo + 1
+			iniciarEm = (JSON.parse(localStorage.getItem('cobranca'))).maximo
 		}
 	
 		/*inicia variavel*/
 		cobranca = {
 			atual:  iniciarEm,
-			maximo: iniciarEm + qtdLista - 1,
+			maximo: iniciarEm + qtdLista
 			lista: []
 		}
 	}
