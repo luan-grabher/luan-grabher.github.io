@@ -56,7 +56,7 @@ var Model = {
 		var formaPagamento = $("#ContentPlaceHolder1_gvContFiliados_lbFormaReceb_0").html();
 		
 		//Se tiver algum rejeitado na tabela
-		if($(cssTable).html().includes('rejeitada') && formaPagamento !== "CAIXA ECONOMICA FEDERAL"){									
+		if(!$(cssTable).html().includes('enviada') && $(cssTable).html().includes('rejeitada') && formaPagamento !== "CAIXA ECONOMICA FEDERAL"){									
 			//procura datas
 			var matches = [...obs.matchAll("[0-9]+[/][0-9]+")];
 			
