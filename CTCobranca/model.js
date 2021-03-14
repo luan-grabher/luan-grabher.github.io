@@ -1,5 +1,5 @@
-var mesMaximo = 1;
-var anoAtual=2021;
+var mesAtual = (new Date()).getMonth() + 1;;
+var anoAtual=(new Date()).getFullYear();
 var inicioMatricula = 329000100;
 
 var Model = {
@@ -66,16 +66,8 @@ var Model = {
 				var data = matches[matches.length-1][0];
 				var dataSplit =  data.split("/");
 				var mes = parseInt(dataSplit[1]);
-				//var ano = parseInt(dataSplit[2]);
-				//Se o ano tiver somente 2 numeros, adiciona o 20 na frente
-				//if(dataSplit[2].length == 2){
-				//	ano = 2000 + ano;
-				//}
-				
-				//ano < 2020
-				//ano = 2020 e mes < mes maximo				
-				/*ano < cobranca.anoAtual || (ano == cobranca.anoAtual && )*/
-				if(mes < mesMaximo){
+
+				if(mes !== mesAtual && mes !== (mesAtual -1)){
 					//Adiciona na lista
 					cobranca.lista.push("RS" + cobranca.atual);
 				}				
