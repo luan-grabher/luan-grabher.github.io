@@ -104,7 +104,7 @@ var Model = {
 				//Adiciona na lista
 				cobranca.lista.push(cobrancaCerta + "RS" + cobranca.atual + " - " + nome + " - " + numero);
 				//DEfine observação como da Bruna
-				Model.definirObservacao();
+				Model.definirObservacao(cssObservacao,obs);
 				
 				//Espera 1s para grvavar
 				setTimeout(function(){},1000);
@@ -114,7 +114,7 @@ var Model = {
 		//Vai pro proximo
 		Model.irParaProximo();		
 	},
-	definirObservacao: function(){				
+	definirObservacao: function(cssObservacao, obs){				
 		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " em contato Bruna");		
 		$(cssObservacao).click();		
 	},
