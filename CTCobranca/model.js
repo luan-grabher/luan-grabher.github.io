@@ -89,7 +89,7 @@ var Model = {
 				//definirObservacao();
 				
 				//Espera 1s para grvavar
-				setTimeout(function(){},1000);
+				//setTimeout(function(){},1000);
 			}
 		}
 		
