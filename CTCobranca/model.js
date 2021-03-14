@@ -1,5 +1,7 @@
-var mesAtual = (new Date()).getMonth() + 1;;
-var anoAtual=(new Date()).getFullYear();
+var dataAtual = new Date();
+var diaAtual = dataAtual.getDate();
+var mesAtual = dataAtual.getMonth() + 1;
+var anoAtual= dataAtual.getFullYear();
 var inicioMatricula = 329000100;
 
 var Model = {
@@ -53,13 +55,11 @@ var Model = {
 		var cssTable = "table#ContentPlaceHolder1_gvContFiliados_gvLancamentos_0";
 		
 		//Se tiver algum rejeitado na tabela
-		if($(cssTable).html().includes('rejeitada')){
-			
-			var cssObservacao = "textarea#ContentPlaceHolder1_txbObservacao";
-			var obs = $(cssObservacao).html();
-			
+		if($(cssTable).html().includes('rejeitada')){									
 			//procura datas
 			var matches = [...obs.matchAll("[0-9]+[/][0-9]+")];
+			
+			var addOnList = false;
 			
 			//se tiver alguma data
 			if(matches.length > 0){
@@ -68,17 +68,34 @@ var Model = {
 				var mes = parseInt(dataSplit[1]);
 
 				if(mes !== mesAtual && mes !== (mesAtual -1)){
-					//Adiciona na lista
-					cobranca.lista.push("RS" + cobranca.atual);
+					addOnList = true;
 				}				
 			}else{
+				addOnList = true;
+			}
+			
+			if(addOnList){
 				//Adiciona na lista
 				cobranca.lista.push("RS" + cobranca.atual);
+				//DEfine observação como da Bruna
+				definirObservacao();
+				
+				//Espera 1s para grvavar
+				setTimeout(function(){},1000);
 			}
 		}
 		
 		//Vai pro proximo
 		Model.irParaProximo();		
+	},
+	definirObservacao: function(){
+		var cssObservacao = "textarea#ContentPlaceHolder1_txbObservacao";
+		var cssGravar = "#ContentPlaceHolder1_btnSalvar";
+		var obs = $(cssObservacao).html();
+		
+		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " contato Bruna");
+		
+		$(cssObservacao).click();		
 	},
 	irParaProximo: function(){
 		cobranca.atual++;
