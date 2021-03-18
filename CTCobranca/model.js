@@ -3,6 +3,7 @@ var diaAtual = dataAtual.getDate();
 var mesAtual = dataAtual.getMonth() + 1;
 var anoAtual= dataAtual.getFullYear();
 var inicioMatricula = 329001000;
+var setObs = false;
 
 var Model = {
 	start: function(){
@@ -104,19 +105,19 @@ var Model = {
 				//Adiciona na lista
 				cobranca.lista.push(cobrancaCerta + "RS" + cobranca.atual + " - " + nome + " - " + numero);
 				//DEfine observação como da Bruna
-				Model.definirObservacao(cssObservacao,obs);
-				
-				//Espera 1s para grvavar
-				setTimeout(function(){},1000);
+				Model.definirObservacao(cssObservacao,obs);				
 			}
 		}
 		
 		//Vai pro proximo
-		Model.irParaProximo();		
+		setTimeout(function () {
+			Model.irParaProximo();
+		}, setObs?1500:10);			
 	},
 	definirObservacao: function(cssObservacao, obs){				
 		$(cssObservacao).val(obs + "\n" + diaAtual  +"/" + mesAtual + "/" + anoAtual + " em contato Bruna");		
-		$(cssObservacao).click();		
+		$(cssObservacao).click();
+		setObs = true;
 	},
 	irParaProximo: function(){
 		cobranca.atual++;
