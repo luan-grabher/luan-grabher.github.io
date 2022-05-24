@@ -6,7 +6,7 @@
     "perguntas": [
       {
         "id": 1,
-        "descricao": "Qual seu nome?",
+        "descricao": "Pergunta de Texto Obrigatoria:",
         "ordem": 1,
         "tipo": "TEXT",
         "obrigatorio": 1,
@@ -20,10 +20,49 @@
         }
       },
       {
+        "id": 1,
+        "descricao": "Pergunta de Texto NÃO Obrigatoria:",
+        "ordem": 1,
+        "tipo": "TEXT",
+        "obrigatorio": 0,
+        "alternativas": [
+          
+        ],
+        "resposta": {
+          "dados": {
+            "text": "Gabriel da Silva Espitalher"
+          }
+        }
+      },
+      {
         "id": 2,
-        "descricao": "Escolha um número?",
+        "descricao": "Escolha um radio?",
         "ordem": 2,
         "tipo": "RADIO",
+        "obrigatorio": 1,
+        "alternativas": [
+          {
+            "id": 1,
+            "descricao": "10",
+            "ordem": 1
+          },
+          {
+            "id": 2,
+            "descricao": "20",
+            "ordem": 2
+          }
+        ],
+        "resposta": {
+          "dados": {
+            "alternativa_id": 2
+          }
+        }
+      },
+      {
+        "id": 2,
+        "descricao": "Escolha alguns checkbox",
+        "ordem": 2,
+        "tipo": "CHECKBOX",
         "obrigatorio": 1,
         "alternativas": [
           {
