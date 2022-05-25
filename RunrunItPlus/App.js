@@ -5,6 +5,7 @@ window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_
 //App class
 const App = () =>{    
     alert("hello i'm working");
+    //test
 };
 
 
