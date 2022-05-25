@@ -140,7 +140,7 @@
         "id": 1,
         "descricao": "Pergunta Data?",
         "ordem": 1,
-        "tipo": "DATA",
+        "tipo": "DATE",
         "obrigatorio": 1,
         "alternativas": [
           
