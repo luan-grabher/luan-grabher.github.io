@@ -20,7 +20,7 @@
         }
       },
       {
-        "id": 1,
+        "id": 2,
         "descricao": "Pergunta de Texto NÃO Obrigatoria:",
         "ordem": 1,
         "tipo": "TEXT",
@@ -35,7 +35,7 @@
         }
       },
       {
-        "id": 2,
+        "id": 3,
         "descricao": "Escolha um radio?",
         "ordem": 2,
         "tipo": "RADIO",
@@ -59,7 +59,7 @@
         }
       },
       {
-        "id": 2,
+        "id": 4,
         "descricao": "Escolha alguns checkbox",
         "ordem": 2,
         "tipo": "CHECKBOX",
@@ -79,6 +79,75 @@
         "resposta": {
           "dados": {
             "alternativa_id": 2
+          }
+        }
+      },
+      {
+        "id": 5,
+        "descricao": "Escolha o select",
+        "ordem": 2,
+        "tipo": "SELECT",
+        "obrigatorio": 1,
+        "alternativas": [
+          {
+            "id": 1,
+            "descricao": "Opção 1",
+            "ordem": 1
+          },
+          {
+            "id": 2,
+            "descricao": "Opção 2",
+            "ordem": 2
+          }
+        ],
+        "resposta": {
+          "dados": {
+            "alternativa_id": 2
+          }
+        }
+      },
+      {
+        "id": 6,
+        "descricao": "Pergunta Textarea?",
+        "ordem": 1,
+        "tipo": "TEXTAREA",
+        "obrigatorio": 1,
+        "alternativas": [
+          
+        ],
+        "resposta": {
+          "dados": {
+            "text": "Gabriel da Silva Espitalher"
+          }
+        }
+      },
+      {
+        "id": 7,
+        "descricao": "Pergunta Number?",
+        "ordem": 1,
+        "tipo": "NUMBER",
+        "obrigatorio": 0,
+        "alternativas": [
+          
+        ],
+        "resposta": {
+          "dados": {
+            "text": "Gabriel da Silva Espitalher"
+          }
+        }
+      },
+      {
+        "id": 1,
+        "descricao": "Pergunta Data?",
+        "ordem": 1,
+        "tipo": "DATA",
+        "obrigatorio": 1,
+        "alternativas": [
+          
+        ],
+        "resposta": {
+          "dados": {
+            "text": "Gabriel da Silva Espitalher"
           }
         }
       }
