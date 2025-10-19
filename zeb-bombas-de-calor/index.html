@@ -51,14 +51,15 @@
         }
 
         .site-logo {
-            width: 500px;
-            height: 500px;
+            width: 220px; /* tamanho padrão em desktop */
+            height: auto;
+            max-width: 45vw;
             object-fit: contain;
             border-radius: 12px;
             background: transparent;
             padding: 0;
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 1rem auto;
         }
 
         /* remover textos do header — .site-title deixada para compatibilidade, mas escondida */
@@ -69,8 +70,9 @@
         /* Hero Section */
         .hero {
             position: relative;
-            height: 300px;
-            background: linear-gradient(rgba(38, 85, 66, 0.7), rgba(38, 85, 66, 0.7)), url('https://placehold.co/1200x400/');
+            min-height: 320px;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(rgba(38, 85, 66, 0.85), rgba(38, 85, 66, 0.85)), url('https://placehold.co/1200x400/');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -78,11 +80,13 @@
             justify-content: center;
             color: var(--branco);
             text-align: center;
+            flex-direction: column; /* empilha logo + conteúdo */
+            gap: 0.75rem;
         }
 
         .hero-content h2 {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            margin: 0.25rem 0 0 0; /* reduz margem superior para ficar logo abaixo do logo */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
@@ -365,19 +369,11 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-inner">
-            <img src="logo.png" alt="Zeb Bombas de Calor" class="site-logo" width="1000" height="1000">
-            <div class="site-title">
-                <h1>Zeb Bombas de Calor</h1>
-                <p>Assistência Técnica Especializada</p>
-            </div>
-        </div>
-    </header>
+    <!-- Header removido: logo será exibido dentro da seção hero conforme solicitado -->
 
-    <!-- Hero Section -->
+    <!-- Hero Section (logo movido para cá) -->
     <div class="hero">
+        <img src="logo.png" alt="Zeb Bombas de Calor" class="site-logo" width="1000" height="1000">
         <div class="hero-content">
             <h2>Especialistas em Aquecimento de Piscinas</h2>
             <p>Manutenção profissional de bombas e trocadores de calor na Grande Florianópolis</p>
