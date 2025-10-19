@@ -55,14 +55,17 @@
 
             .site-logo {
                 width: 220px; /* tamanho padrão em desktop */
-                height: auto;
+                height: 220px; /* força proporção quadrada para ficar circular */
                 max-width: 45vw;
-                object-fit: contain;
-                border-radius: 12px;
+                max-height: 45vw;
+                object-fit: cover; /* preenche o espaço mantendo foco */
+                border-radius: 50%; /* torna circular */
                 background: transparent;
                 padding: 0;
                 display: block;
                 margin: 0 auto 1rem auto;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.12); /* sombra suave */
+                border: 4px solid rgba(255,255,255,0.85); /* leve borda para destaque */
             }
 
             /* remover textos do header — .site-title deixada para compatibilidade, mas escondida */
@@ -376,7 +379,7 @@
 
         <!-- Hero Section (logo movido para cá) -->
         <div class="hero">
-            <img src="logo.png" alt="Zeb Bombas de Calor" class="site-logo" width="1000" height="1000" />
+            <img src="logo.png" alt="Zeb Bombas de Calor" class="site-logo" />
             <div class="hero-content">
                 <h2>Especialistas em Aquecimento de Piscinas</h2>
                 <p>Manutenção profissional de bombas e trocadores de calor na Grande Florianópolis</p>
