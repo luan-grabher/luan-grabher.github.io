@@ -16,11 +16,14 @@ function initializeServiceCardSlideshows() {
         images[currentIndex].classList.add('active');
         
         // Rotate images every 2 seconds
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             images[currentIndex].classList.remove('active');
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].classList.add('active');
         }, 2000);
+        
+        // Store interval ID for potential cleanup
+        imageContainer.dataset.intervalId = intervalId;
     });
 }
 
