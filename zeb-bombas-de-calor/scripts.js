@@ -15,15 +15,26 @@ function initializeServiceCardSlideshows() {
         let currentIndex = 0;
         images[currentIndex].classList.add('active');
         
+        // Hide non-active images from screen readers
+        images.forEach((img, index) => {
+            if (index !== currentIndex) {
+                img.setAttribute('aria-hidden', 'true');
+            }
+        });
+        
         // Rotate images every 2 seconds
         const intervalId = setInterval(() => {
             images[currentIndex].classList.remove('active');
+            images[currentIndex].setAttribute('aria-hidden', 'true');
+            
             currentIndex = (currentIndex + 1) % images.length;
+            
             images[currentIndex].classList.add('active');
+            images[currentIndex].removeAttribute('aria-hidden');
         }, 2000);
         
-        // Store interval ID for potential cleanup
-        imageContainer.dataset.intervalId = intervalId;
+        // Store interval ID as property for potential cleanup
+        imageContainer._intervalId = intervalId;
     });
 }
 

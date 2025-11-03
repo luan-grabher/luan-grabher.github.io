@@ -174,11 +174,13 @@ section h2::after {
     object-fit: cover;
     border-radius: 8px;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 .service-card-image-container img.active {
     opacity: 1;
+    visibility: visible;
 }
 
 .service-card h3 {
