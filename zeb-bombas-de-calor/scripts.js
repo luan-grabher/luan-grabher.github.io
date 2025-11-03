@@ -10,10 +10,13 @@ function initializeServiceCardSlideshows() {
         if (!imageContainer) return;
         
         const images = imageContainer.querySelectorAll('img');
-        if (images.length <= 1) return; // No slideshow needed for single image
+        if (images.length === 0) return; // No images
         
         let currentIndex = 0;
         images[currentIndex].classList.add('active');
+        
+        // If only one image, no slideshow needed
+        if (images.length === 1) return;
         
         // Hide non-active images from screen readers
         images.forEach((img, index) => {
