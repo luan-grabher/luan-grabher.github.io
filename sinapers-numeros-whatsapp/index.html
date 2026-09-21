@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp via QR — Números, Viabilidade e Custos (Sinapers)</title>
+<style>
+  :root{--azul:#1c3f6e;--teal:#1b7f79;--bg:#f4f7fa;--card:#ffffff;--line:#e2e8f0;--txt:#1a2332;--mut:#5b6b83;--ok:#178a4e;--warn:#b45309;--bad:#b91c1c;}
+  *{box-sizing:border-box}
+  body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--txt);margin:0;padding:24px;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:22px;color:var(--azul);margin:0 0 4px}
+  .sub{color:var(--mut);margin:0 0 20px;font-size:14px}
+  h2{font-size:17px;color:var(--azul);margin:28px 0 10px;border-bottom:2px solid var(--teal);padding-bottom:6px}
+  h3{font-size:15px;color:var(--teal);margin:16px 0 6px}
+  .verdict{background:var(--card);border-left:5px solid var(--teal);border-radius:8px;padding:14px 18px;margin:10px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .verdict strong{color:var(--azul)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);margin:8px 0}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+  th{background:var(--azul);color:#fff;font-weight:600;font-size:13px}
+  tr:last-child td{border-bottom:none}
+  .pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;color:#fff;vertical-align:middle}
+  .ok{background:var(--ok)} .warn{background:var(--warn)} .bad{background:var(--bad)}
+  .p{color:var(--mut);font-size:12.5px}
+  ul{margin:6px 0;padding-left:20px}
+  li{margin:4px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:8px 0}
+  .card{background:var(--card);border-radius:8px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .card b{color:var(--azul);display:block;margin-bottom:4px}
+  .note{background:#fff8e6;border:1px solid #f0d9a0;border-radius:8px;padding:12px 16px;font-size:13px;margin:10px 0}
+  .note b{color:var(--warn)}
+  .green{color:var(--ok)} .red{color:var(--bad)} .amber{color:var(--warn)}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>WhatsApp via QR Code — Números, Viabilidade e Custos</h1>
+<p class="sub">Mapeamento para o Sinapers · Envio alternativo à API oficial (via QR Code do WhatsApp) · Material para decisão da empresa</p>
+
+<h2>1. Viabilidade: entregar 3.000 mensagens</h2>
+<div class="verdict">
+  <strong>É viável, mas não com 1 número só e não de uma vez.</strong> Um número novo (ainda sem histórico) começa com limite prático em torno de <strong>250 conversas novas por dia</strong>. Acima disso, o risco de banimento sobe muito — enviar ~200 em 1 hora, ou repetir o mesmo texto dezenas de vezes, é detectado na hora.
+</div>
+<div class="grid">
+  <div class="card"><b>Cenário A — 1 número</b>~250 novos/dia → 3.000 leva <strong>~12 a 15 dias</strong>. Risco alto de banimento no meio da operação, com perda do número e da sessão.</div>
+  <div class="card"><b>Cenário B — 4 números</b>~250 a 300/dia cada → 3.000 em <strong>~3 a 4 dias</strong>. Risco muito menor; se um número cair, os demais seguram a operação.</div>
+</div>
+<p class="p">Observação: o WhatsApp não publica limites oficiais. Os valores acima são a prática observada no mercado (números sem verificação de negócio partem de ~250 conversas cada 24h; envios acima de ~200/h disparam alerta).</p>
+
+<h3>Como evitar o banimento (ritmo de envio)</h3>
+<ul>
+  <li><strong>Espaço de tempo aleatório entre as mensagens:</strong> de 25 a 70 segundos, nunca fixo (a variação parece comportamento de pessoa).</li>
+  <li><strong>Teto por hora:</strong> de 50 a 150 mensagens. Nunca acima de 200 em 1 hora.</li>
+  <li><strong>Aquecimento nos primeiros dias:</strong> subir aos poucos — 50, depois 120, depois 200 novos por dia — em vez de começar na carga máxima.</li>
+  <li><strong>Pausa noturna:</strong> sem envios entre 23h e 7h.</li>
+  <li><strong>Colar (Ctrl+V) é normal:</strong> uma pessoa de verdade também cola a mensagem pronta em vez de digitar uma por uma. Fazer <em>pequenas variações no texto</em> de vez em quando reduz o padrão típico de envio em massa.</li>
+  <li><strong>1 envio por contato:</strong> não reenviar para quem respondeu, bloqueou ou já recebeu.</li>
+  <li><strong>Qualidade da lista:</strong> contatos que já tiveram contato dão muito mais retorno que uma lista fria.</li>
+</ul>
+
+<h2>2. Formatos de número e custos</h2>
+<table>
+  <tr><th>Formato</th><th>Quem é o dono</th><th>Custo para conseguir o número</th><th>Custo para manter a linha</th><th>Pagamento</th><th>Risco de banimento</th></tr>
+  <tr>
+    <td><strong>eSIM pré-pago (chip virtual)</strong><br><span class="p">Vivo · Claro · TIM — ativado pelo site/app/QR, sem chip físico</span></td>
+    <td>Linha na conta da empresa (CPF ou CNPJ)</td>
+    <td><strong>A avaliar</strong> — o custo de obter o número não aparece nos sites; confirmar com a operadora/vendedor</td>
+    <td>Recarga de <strong>R$15 a R$35</strong> (mantém a linha por 15 a 30 dias)</td>
+    <td>Pix</td>
+    <td><span class="ok pill">Baixo</span></td>
+  </tr>
+  <tr>
+    <td><strong>Chip físico pré-pago</strong><br><span class="p">comprado em loja, farmácia, papelaria ou com a operadora no centro da cidade</span></td>
+    <td>Linha na conta da empresa (CPF ou CNPJ)</td>
+    <td><strong>R$20 a R$30</strong> — compra local, com o número novo</td>
+    <td>A mesma recarga de R$15 a R$35 a cada 15-30 dias</td>
+    <td>Pix (na farmácia/loja)</td>
+    <td><span class="ok pill">Baixo</span></td>
+  </tr>
+</table>
+<p class="p">Recargas reais (Claro, planos pré-pagos em 2026): R$15 → 15 dias de validade · R$20 → 20 dias · R$25 → 25 dias · R$30-35 → 30 dias. Na Vivo e na TIM os planos pré-pagos seguem na mesma faixa (recarga por Pix, sem mensalidade fixa).</p>
+
+<h2>3. Como fica o fluxo na prática</h2>
+<h3>Para a empresa (sem mudar a operação diária)</h3>
+<ol>
+  <li><strong>Compra dos números:</strong> a empresa adquire os chips (eSIM ativado online, ou chip físico no centro da cidade), tudo por Pix e com documento.</li>
+  <li><strong>Cadastro no sistema:</strong> na área de <em>Números conectados</em>, o responsável clica em <em>Adicionar número</em>, o sistema mostra o QR Code do WhatsApp, o número é conectado e aparece como <strong>ativo</strong>.</li>
+  <li><strong>Configuração por número:</strong> limite diário e pausa por número. O sistema <strong>distribui a fila dos 3.000 automaticamente</strong> entre os números ativos, respeitando o ritmo e o limite de cada um.</li>
+  <li><strong>Se um número cair:</strong> o painel marca o status e o sistema segue com os demais, sem interromper a campanha.</li>
+</ol>
+<p class="p">O envio em si não muda para quem usa o sistema: apenas o "motor" muda (da API oficial para a API não oficial via QR Code), mantendo o mesmo agendamento.</p>
+
+<h2>4. Resumo e recomendação</h2>
+<div class="verdict">
+  <strong>4 linhas de chip físico pré-pago nacional, vinculadas ao CNPJ → 3.000 contatos em ~3 a 4 dias,</strong> com ritmo de envio humano (espaço aleatório entre mensagens, teto por hora, aquecimento, pausa noturna e 1 envio por contato). Considerando o chip (custo único a cada número) e a recarga para manter as linhas por 30 dias, os 4 números ficam na casa de <strong>R$120 a R$200 no primeiro mês</strong>; nos meses seguintes apenas a recarga, ~<strong>R$60 a R$140/mês</strong>, tudo pagável por Pix.
+</div>
+
+<p class="p" style="margin-top:20px">Documento gerado em 21/09/2026 · Valores de chip, eSIM e recarga apurados em sites oficiais das operadoras (Vivo, Claro, TIM) e comparativos de planos pré-pagos — confirmar o valor vigente na página da operadora antes da compra; faixas de limite de envio são estimativas de mercado (não são publicadas pelo WhatsApp).</p>
+
+</div></body></html>
