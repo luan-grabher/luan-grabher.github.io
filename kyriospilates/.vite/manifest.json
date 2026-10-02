@@ -1,0 +1,23 @@
+{
+  "_client-DQFrODdj.js": {
+    "file": "assets/client-DQFrODdj.js",
+    "name": "client",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "index.html": {
+    "file": "assets/app-zEjACOsm.js",
+    "name": "app",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "_client-DQFrODdj.js",
+      "_client-DQFrODdj.js"
+    ],
+    "css": [
+      "assets/app-CtMnNXUL.css"
+    ]
+  }
+}
