@@ -6,7 +6,7 @@ on:
       - '.github/workflows/limpar-deploy-travado.yml'
 
 permissions:
-  contents: read
+  contents: write
   deployments: write
   pages: write
 
@@ -14,20 +14,33 @@ jobs:
   limpar:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancelar e remover deployment travado
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cancelar e remover o deployment de Pages travado
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TRACADO: 382f7cd569d30bb6c0aad3c52c536b634a1d44c2
         run: |
           {
-            echo "## Deployments antes"
-            gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=5" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"' || echo "falhou listar"
-            echo ""
-            echo "## Cancelar pages deployment 382f7cd (build travado)"
-            gh api -X POST "repos/${{ github.repository }}/pages/deployments/382f7cd569d30bb6c0aad3c52c536b634a1d44c2/cancel" 2>&1 || echo "cancel falhou"
-            echo ""
-            echo "## Apagar deployment 7554659855"
-            gh api -X DELETE "repos/${{ github.repository }}/deployments/7554659855" 2>&1 || echo "delete falhou"
-            echo ""
-            echo "## Deployments depois"
-            gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=5" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"' || echo "falhou listar"
-          } >> "$GITHUB_STEP_SUMMARY"
+            echo "== status do deployment de pages travado"
+            gh api "repos/${{ github.repository }}/pages/deployments/$TRACADO" 2>&1
+            echo
+            echo "== cancelar"
+            gh api -X POST "repos/${{ github.repository }}/pages/deployments/$TRACADO/cancel" 2>&1
+            echo
+            echo "== apagar"
+            gh api -X DELETE "repos/${{ github.repository }}/pages/deployments/$TRACADO" 2>&1
+            echo
+            echo "== deployments do ambiente github-pages"
+            gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=6" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"' 2>&1
+          } > diagnostico-pages.txt 2>&1
+
+      - name: Publicar diagnostico no repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add diagnostico-pages.txt
+          git commit -m "chore: diagnostico do pages travado"
+          git push
