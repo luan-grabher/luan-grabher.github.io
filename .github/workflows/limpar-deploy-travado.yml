@@ -14,15 +14,13 @@ jobs:
   limpar:
     runs-on: ubuntu-latest
     steps:
-      - name: Diagnosticar e destravar o Pages
+      - name: Ler estado das builds do Pages
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          TRACADO: 382f7cd569d30bb6c0aad3c52c536b634a1d44c2
         run: |
           set +e
-          echo "::error::A-status=$(gh api "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 400)"
-          echo "::error::B-cancel=$(gh api -X POST "repos/$REPO/pages/deployments/$TRACADO/cancel" 2>&1 | tr '\n' ' ' | head -c 400)"
-          echo "::error::C-build=$(gh api -X POST "repos/$REPO/pages/builds" 2>&1 | tr '\n' ' ' | head -c 400)"
-          echo "::error::D-config=$(gh api "repos/$REPO/pages" 2>&1 | tr '\n' ' ' | head -c 400)"
+          echo "::error::E-latest=$(gh api "repos/$REPO/pages/builds/latest" 2>&1 | tr '\n' ' ' | head -c 600)"
+          echo "::error::F-historico=$(gh api "repos/$REPO/pages/builds?per_page=3" 2>&1 | tr '\n' ' ' | head -c 600)"
+          echo "::error::G-deployments=$(gh api "repos/$REPO/deployments?environment=github-pages&per_page=6" --jq '.[] | "\(.id)-\(.sha[0:7])"' 2>&1 | tr '\n' ' ' | head -c 300)"
