@@ -6,7 +6,7 @@ on:
       - '.github/workflows/limpar-deploy-travado.yml'
 
 permissions:
-  contents: write
+  contents: read
   deployments: write
   pages: write
 
@@ -14,33 +14,19 @@ jobs:
   limpar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Cancelar e remover o deployment de Pages travado
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
           TRACADO: 382f7cd569d30bb6c0aad3c52c536b634a1d44c2
         run: |
-          {
-            echo "== status do deployment de pages travado"
-            gh api "repos/${{ github.repository }}/pages/deployments/$TRACADO" 2>&1
-            echo
-            echo "== cancelar"
-            gh api -X POST "repos/${{ github.repository }}/pages/deployments/$TRACADO/cancel" 2>&1
-            echo
-            echo "== apagar"
-            gh api -X DELETE "repos/${{ github.repository }}/pages/deployments/$TRACADO" 2>&1
-            echo
-            echo "== deployments do ambiente github-pages"
-            gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=6" --jq '.[] | "\(.id) \(.sha[0:7]) \(.created_at)"' 2>&1
-          } > diagnostico-pages.txt 2>&1
+          set +e
+          DIAG=""
 
-      - name: Publicar diagnostico no repositorio
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add diagnostico-pages.txt
-          git commit -m "chore: diagnostico do pages travado"
-          git push
+          DIAG="$DIAG | 1-status:$(gh api "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 300)"
+          DIAG="$DIAG | 2-cancel:$(gh api -X POST "repos/$REPO/pages/deployments/$TRACADO/cancel" 2>&1 | tr '\n' ' ' | head -c 300)"
+          DIAG="$DIAG | 3-delete:$(gh api -X DELETE "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 300)"
+          DIAG="$DIAG | 4-lista:$(gh api "repos/$REPO/deployments?environment=github-pages&per_page=6" --jq '.[] | "\(.id)-\(.sha[0:7])"' 2>&1 | tr '\n' ' ' | head -c 300)"
+
+          echo "::error::$DIAG"
