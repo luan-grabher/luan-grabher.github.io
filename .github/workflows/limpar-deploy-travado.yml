@@ -14,7 +14,7 @@ jobs:
   limpar:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancelar e remover o deployment de Pages travado
+      - name: Diagnosticar e destravar o Pages
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -22,11 +22,7 @@ jobs:
           TRACADO: 382f7cd569d30bb6c0aad3c52c536b634a1d44c2
         run: |
           set +e
-          DIAG=""
-
-          DIAG="$DIAG | 1-status:$(gh api "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 300)"
-          DIAG="$DIAG | 2-cancel:$(gh api -X POST "repos/$REPO/pages/deployments/$TRACADO/cancel" 2>&1 | tr '\n' ' ' | head -c 300)"
-          DIAG="$DIAG | 3-delete:$(gh api -X DELETE "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 300)"
-          DIAG="$DIAG | 4-lista:$(gh api "repos/$REPO/deployments?environment=github-pages&per_page=6" --jq '.[] | "\(.id)-\(.sha[0:7])"' 2>&1 | tr '\n' ' ' | head -c 300)"
-
-          echo "::error::$DIAG"
+          echo "::error::A-status=$(gh api "repos/$REPO/pages/deployments/$TRACADO" 2>&1 | tr '\n' ' ' | head -c 400)"
+          echo "::error::B-cancel=$(gh api -X POST "repos/$REPO/pages/deployments/$TRACADO/cancel" 2>&1 | tr '\n' ' ' | head -c 400)"
+          echo "::error::C-build=$(gh api -X POST "repos/$REPO/pages/builds" 2>&1 | tr '\n' ' ' | head -c 400)"
+          echo "::error::D-config=$(gh api "repos/$REPO/pages" 2>&1 | tr '\n' ' ' | head -c 400)"
